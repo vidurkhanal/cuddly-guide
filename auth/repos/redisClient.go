@@ -9,14 +9,13 @@ import (
 var Client *redis.Client
 
 func init() {
-	//Initializing redis
 	dsn := os.Getenv("REDIS_DSN")
 	if len(dsn) == 0 {
 		dsn = "localhost:6379"
 	}
 
 	Client = redis.NewClient(&redis.Options{
-		Addr: dsn, //redis port
+		Addr: dsn,
 	})
 	_, err := Client.Ping().Result()
 	if err != nil {

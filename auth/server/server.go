@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"hmanAuth/functions"
 	gen "hmanAuth/gen/protos"
 
 	"google.golang.org/grpc"
@@ -12,10 +13,7 @@ type AuthServer struct {
 }
 
 func (s *AuthServer) Login(ctx context.Context, in *gen.LoginInput) (*gen.Tokens, error) {
-	return &gen.Tokens{
-		AccessToken:  in.Username,
-		RefreshToken: in.Password,
-	}, nil
+	return functions.Login(in)
 }
 
 func NewGRPCServer() *grpc.Server {

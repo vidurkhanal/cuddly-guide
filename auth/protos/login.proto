@@ -6,7 +6,7 @@ option go_package = "hmanAuth/gen";
 
 message Tokens {
     string accessToken = 1;
-    string refreshToken = 2;pro
+    string refreshToken = 2;
 }
 
 message LoginInput {

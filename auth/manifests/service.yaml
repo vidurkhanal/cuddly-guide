@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  hman-auth
+spec:
+  selector:
+    app:  hman-auth
+  type:   ClusterIP
+  ports:
+  - protocol: TCP
+    port:  50052
+    targetPort:  50052

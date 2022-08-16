@@ -15,7 +15,10 @@ func init() {
 	}
 
 	Client = redis.NewClient(&redis.Options{
-		Addr: dsn,
+		Addr:     dsn,
+		DB:       0,
+		Username: os.Getenv("REDIS_USERNAME"),
+		Password: os.Getenv("REDIS_PASSWORD"),
 	})
 	_, err := Client.Ping().Result()
 	if err != nil {

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hman-auth
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hman-auth
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hman-auth
+    spec:
+      containers:
+      - name: hman-auth
+        image: vidurkhanal/hman-auth
+        # resources:
+          # limits:
+          #   memory: "1G"
+          #   cpu: "1G"
+        ports:
+        - containerPort: 50052
+        envFrom:
+          - configMapRef:
+              name:  hman-auth-config
+          - secretRef:
+              name: hman-auth-secret

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hman-auth-config
+  labels:
+    app: hman-auth
+data:
+    REDIS_DSN : redis-16543.c263.us-east-1-2.ec2.cloud.redislabs.com:16543
+
+  

@@ -2,8 +2,7 @@ package main
 
 import (
 	"hmanAuth/cmd"
-
-	_ "github.com/joho/godotenv/autoload"
+	// _ "github.com/joho/godotenv/autoload"
 )
 
 func main() {

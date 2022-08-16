@@ -4,20 +4,14 @@ FROM golang:1.16-alpine
 
 WORKDIR /app
 
-COPY go.mod ./
-COPY go.sum ./
+COPY . ./
 
-
-
-COPY */**/*.go ./
-COPY */**/*.proto ./
 RUN go mod download
 
-RUN go build -o /hmanAuth
+RUN go build -o .
 
-RUN chmod +X ./app/hmanAuth
-
+RUN chmod +x ./hmanAuth
 
 EXPOSE 50052
 
-CMD [ "/hmanAuth" ]
+CMD [ "./hmanAuth" ]

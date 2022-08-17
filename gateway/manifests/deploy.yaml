@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hman-gateway
+spec:
+  replicas: 4
+  strategy: 
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+    type: RollingUpdate
+      
+  selector:
+    matchLabels:
+      app: hman-gateway
+  template:
+    metadata:
+      labels:
+        app: hman-gateway
+    spec:
+      containers:
+      - name: hman-gateway
+        image: vidurkhanal/hman-gateway
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 5050
+        envFrom:
+          - configMapRef:
+              name: hman-gateway-config
+

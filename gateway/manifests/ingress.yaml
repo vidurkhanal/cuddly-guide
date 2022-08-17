@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hman-gateway-ingress 
+  labels:
+    name: hman-gateway-ingress
+  annotations:
+    "nginx.ingress.kubernetes.io/proxy-body-size":  "0"
+    "nginx.ingress.kubernetes.io/proxy-read-timeout":  "600"
+    "nginx.ingress.kubernetes.io/proxy-send-timeout":  "600"
+spec:
+  rules:
+  - host: api.handyman.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: hman-gateway
+            port: 
+              number: 5050

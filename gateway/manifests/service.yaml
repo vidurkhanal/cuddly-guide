@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  hman-gateway
+spec:
+  selector:
+    app:  hman-gateway
+  type:  NodePort
+  ports:
+  - protocol: TCP
+    port:  5050
+    targetPort:  5050

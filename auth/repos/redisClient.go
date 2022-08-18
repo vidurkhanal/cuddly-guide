@@ -6,7 +6,7 @@ import (
 	"github.com/go-redis/redis/v7"
 )
 
-var Client *redis.Client
+var RedisClient *redis.Client
 
 func init() {
 	dsn := os.Getenv("REDIS_DSN")
@@ -14,13 +14,15 @@ func init() {
 		dsn = "localhost:6379"
 	}
 
-	Client = redis.NewClient(&redis.Options{
+	RedisClient = redis.NewClient(&redis.Options{
 		Addr:     dsn,
 		DB:       0,
 		Username: os.Getenv("REDIS_USERNAME"),
 		Password: os.Getenv("REDIS_PASSWORD"),
 	})
-	_, err := Client.Ping().Result()
+
+	_, err := RedisClient.Ping().Result()
+
 	if err != nil {
 		panic(err)
 	}

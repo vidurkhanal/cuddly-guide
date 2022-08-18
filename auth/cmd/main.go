@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"hmanAuth/models"
 	"hmanAuth/server"
 	"log"
 	"net"
@@ -15,6 +16,8 @@ func Init() {
 	}
 
 	srv := server.NewGRPCServer()
+
+	models.AutoMigrate()
 
 	log.Println("starting auth service on", port)
 

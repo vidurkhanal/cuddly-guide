@@ -1,8 +1,8 @@
 package main
 
 import (
+	_ "github.com/joho/godotenv/autoload"
 	"hmanAuth/cmd"
-	// _ "github.com/joho/godotenv/autoload"
 )
 
 func main() {

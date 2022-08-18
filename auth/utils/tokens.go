@@ -123,7 +123,7 @@ func ExtractTokenMetadata(r *http.Request) (*AccessDetails, error) {
 }
 
 func FetchAuth(authD *AccessDetails) (uint64, error) {
-	userid, err := repos.Client.Get(authD.AccessUuid).Result()
+	userid, err := repos.RedisClient.Get(authD.AccessUuid).Result()
 	if err != nil {
 		return 0, err
 	}

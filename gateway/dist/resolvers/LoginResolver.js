@@ -11,15 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoginResolver = void 0;
 const type_graphql_1 = require("type-graphql");
-const grpc_js_1 = require("@grpc/grpc-js");
-const proto_loader_1 = require("@grpc/proto-loader");
-const path_1 = __importDefault(require("path"));
+const protoCilents_1 = require("../protoCilents");
 let UserInput = class UserInput {
 };
 __decorate([
@@ -46,22 +41,11 @@ __decorate([
 LoginReturn = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], LoginReturn);
-const PROTO_PATH = path_1.default.join(__dirname, "../../protos/login.proto");
-const options = {
-    keepCase: true,
-    longs: String,
-    enums: String,
-    defaults: true,
-    oneofs: true,
-};
-let grpcObj = (0, proto_loader_1.loadSync)(PROTO_PATH, options);
-const { hmanAuth } = (0, grpc_js_1.loadPackageDefinition)(grpcObj);
-const auth_client = new hmanAuth.Auth("hman-auth", grpc_js_1.credentials.createInsecure());
 let LoginResolver = class LoginResolver {
     async Login(userInput) {
         const LoginPromise = () => {
             return new Promise((resolve, reject) => {
-                auth_client.Login({ username: userInput.username, password: userInput.password }, (err, res) => {
+                protoCilents_1.AuthClient.Login({ username: userInput.username, password: userInput.password }, (err, res) => {
                     if (err) {
                         reject(err);
                     }

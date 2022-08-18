@@ -26,5 +26,5 @@ const main = async () => {
         console.log("GRAPHQL SERVER IS ACTIVE ON http:localhost:5050" + apollo.graphqlPath);
     });
 };
-main().catch(e => console.log(e.message));
+main().catch((e) => console.log(e.message));
 //# sourceMappingURL=index.js.map

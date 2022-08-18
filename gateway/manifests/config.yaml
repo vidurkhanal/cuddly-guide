@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: hman-gateway-config
 data:
-  AUTH_SVC_ADDRESS: hman-auth
+  AUTH_SVC_ADDRESS: hman-auth:50052

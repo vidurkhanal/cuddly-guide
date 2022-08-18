@@ -18,6 +18,6 @@ let grpcObj = loadSync(PROTO_PATH, options);
 const { hmanAuth } = loadPackageDefinition(grpcObj) as unknown as ProtoGrpcType;
 
 export const AuthClient = new hmanAuth.Auth(
-  "localhost:50052",
-  credentials.createInsecure(),
+  process.env.AUTH_SVC_ADDRESS as string,
+  credentials.createInsecure()
 );
